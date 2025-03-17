@@ -1,0 +1,41 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /music
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/music_db?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+jwt:
+  secret: "Z2JU9JnvhZqK7pbOhJMuaCIEFGYPYRPFrefJCSY3ZII="
+  expiration: 3600000
+
+mybatis-plus:
+  # Mapper
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.fg.music_server.entity
+  global-config:
+    db-config:
+      id-type: auto
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true  # 驼峰命名
+
+
+# 接口文档
+springdoc:
+  api-docs:
+    enabled: true  # 开启 OpenAPI 规范生成
+    path: /v3/api-docs  # 默认接口文档 JSON 路径
+  swagger-ui:
+    enabled: true  # 开启 Swagger UI
+    path: /swagger-ui.html  # 默认 Swagger UI 路径
+
+logging:
+  level:
+    root: info
+    com.fg.music_server: debug
